@@ -11,8 +11,13 @@ export class ProductService {
   private http:HttpClient) { }
   path="http://localhost:3000/products";
 
-  getProducts (): Observable<Product[]>{ // 
-   return this.http.get<Product[]>(this.path).pipe(
+  getProducts (categoryId): Observable<Product[]>{ // 
+    let newPath =this.path;
+    if(categoryId){
+      newPath += "?categoryId="+categoryId
+    }
+ 
+   return this.http.get<Product[]>(newPath).pipe(
     tap(data =>console.log(JSON.stringify(data))),  // hata yakalayabileceğiz ya da loglama yapabileceğiz
     catchError(this.handleError)
    );// loglarma sistemi ,hata yakalama sistemi örnek gösterilebilir.

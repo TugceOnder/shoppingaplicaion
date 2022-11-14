@@ -6,7 +6,7 @@ import { provideRoutes } from '@angular/router';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
+  templateUrl: './category.component.html', 
   styleUrls: ['./category.component.css'],
   providers:[CategoryService]
 })
