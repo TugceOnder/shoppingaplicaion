@@ -1,3 +1,5 @@
+import { AlertifyService } from './../../services/alertify.service';
+import { ProductService } from './../../services/product.service';
 import { Product } from './../product';
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
@@ -8,11 +10,11 @@ import { NgForm } from '@angular/forms';
   selector: 'app-product-add-forms1',
   templateUrl: './product-add-forms1.component.html',
   styleUrls: ['./product-add-forms1.component.css'],
-  providers : [CategoryService]
+  providers : [CategoryService , ProductService]
 })
 export class ProductAddForms1Component implements OnInit {
 
-  constructor(private categoryService : CategoryService) {}
+  constructor(private categoryService : CategoryService, private productService : ProductService, private alertifyService: AlertifyService) {}
   model : Product = new Product ();
   
   categories: Category[];
@@ -25,7 +27,10 @@ export class ProductAddForms1Component implements OnInit {
   }
 
   add(form:NgForm){
+this.productService.addProduct(this.model).subscribe(data =>{
+this.alertifyService.success(data.name + "başarıyla eklendi")
 
-console.log(form.value.name);
+
+});
   }
 }
