@@ -29,7 +29,8 @@ categoryId: ["",Validators.required],
 
   add(){
     if(this.productAddForm.valid){
-this.product =  Object.assign({},this.productAddForm.value)
+this.product =  Object.assign({},this.productAddForm.value
+  )
     }
   }
 }
